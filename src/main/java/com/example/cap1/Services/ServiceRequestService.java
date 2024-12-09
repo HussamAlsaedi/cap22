@@ -121,6 +121,16 @@ public class ServiceRequestService {
                         "</html>");
 
     }
+     public void completeServiceRequest(Long requestId) {
+
+        ServiceRequest serviceRequest = serviceRequestRepository.findServiceRequestById(requestId);
+
+        if (serviceRequest == null) {
+            throw new ApiException("service request does not exist.");
+        }
+        serviceRequest.setServiceRequest_status("complete");
+        serviceRequestRepository.save(serviceRequest);
+    }
 
     // this method find all service request depends on role of technician role
     public List<ServiceRequest> getAllServiceRequestsByRole(Long technicianId) {
