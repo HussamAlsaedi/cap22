@@ -72,7 +72,11 @@ public class ServiceRequestController {
         return ResponseEntity.status(200).body(new ApiResponse("Successfully assigned technician with id " + requestId));
     }
 
-
+@GetMapping("/get-completeServiceRequest/{requestId}")
+    public ResponseEntity<ApiResponse> completeServiceRequest(@PathVariable Long requestId) {
+        serviceRequestService.completeServiceRequest(requestId);
+        return ResponseEntity.status(200).body(new ApiResponse("Successfully completed service request"));
+    }
 
     // Endpoint # 12
     // get All Requests By Status
